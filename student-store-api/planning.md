@@ -315,3 +315,10 @@ Global API error response shape (used consistently):
 ### Cascade delete verification
 - Deleting a Product removes associated OrderItems: ✅ tested
 - Deleting an Order removes associated OrderItems: ✅ tested
+
+## Decisions Log — Order Creation Transaction
+
+- **What my Transactional Flow spec got right**: The operation order in the spec matched implementation exactly: validate body, verify product IDs, compute totals, create the `Order`, then create `OrderItem` rows and return the order with `items`.
+- **What the spec missed that I discovered during implementation**: I added explicit item-level validation (`product_id` must be an integer and `quantity > 0`) so malformed arrays fail fast with a `400` before touching the database.
+- **How the transaction error handling works**: `prisma.$transaction` treats all DB operations as one unit; if any step throws (like a missing product ID), Prisma rolls back all writes in that transaction so no partial order or orphaned order items are persisted.
+- **One thing I'd design differently if starting over**: I would move validation and product lookup into a dedicated service layer so route handlers stay thin and all transaction-specific logic lives in one reusable module.
