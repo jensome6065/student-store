@@ -298,3 +298,9 @@ Global API error response shape (used consistently):
 - If any order item creation fails (constraint violation, invalid FK, DB error), the entire transaction rolls back.
 - No partial order or partial order items remain in the database.
 - Response returns an error object (typically `400` for bad input, `500` for unexpected DB failure).
+
+## Decisions Log — Product Model
+
+- **Schema translation that went smoothly**: `imageUrl` in Prisma maps cleanly to a snake_case DB/API field with `@map("image_url")`, so DB naming can stay consistent while JS stays idiomatic.
+- **Field decision I made during implementation that wasn't in the original spec**: I used `Decimal @db.Decimal(10, 2)` for `price` to avoid float precision issues and kept API responses as numeric values by converting Decimal to Number in serializers.
+- **Route behavior that needed a spec update**: The Product API section originally documented `GET` and `DELETE`; I expanded Product to full CRUD with `POST /products` and `PUT /products/:productId` so Milestone 1 has all five product endpoints implemented and testable.
