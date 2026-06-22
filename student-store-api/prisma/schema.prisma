@@ -25,3 +25,16 @@ model Product {
 
   @@map("products")
 }
+
+model Order {
+  id              Int      @id @default(autoincrement())
+  customerName    String   @map("customer_name")
+  customerEmail   String   @map("customer_email")
+  shippingAddress String   @map("shipping_address")
+  status          String   @default("pending")
+  totalPrice      Decimal  @default(0) @db.Decimal(10, 2) @map("total_price")
+  createdAt       DateTime @default(now()) @map("created_at")
+  updatedAt       DateTime @updatedAt @map("updated_at")
+
+  @@map("orders")
+}
