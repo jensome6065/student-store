@@ -23,7 +23,7 @@ const toApiProduct = (product) => {
 }
 
 const toApiOrder = (order) => {
-  return {
+  const payload = {
     id: order.id,
     customer_name: order.customerName,
     customer_email: order.customerEmail,
@@ -32,6 +32,19 @@ const toApiOrder = (order) => {
     total_price: Number(order.totalPrice),
     created_at: order.createdAt,
   }
+
+  if (order.items) {
+    payload.items = order.items.map((item) => ({
+      id: item.id,
+      order_id: item.orderId,
+      product_id: item.productId,
+      quantity: item.quantity,
+      unit_price: Number(item.unitPrice),
+      line_total: Number(item.lineTotal),
+    }))
+  }
+
+  return payload
 }
 
 const parseId = (value) => {
@@ -55,7 +68,7 @@ const validateProductBody = (body) => {
 }
 
 const validateOrderCreateBody = (body) => {
-  const { customer_name, customer_email, shipping_address, status, total_price } = body
+  const { customer_name, customer_email, shipping_address, status, items } = body
   if (!customer_name || !customer_email || !shipping_address) {
     return "customer_name, customer_email, and shipping_address are required"
   }
@@ -64,10 +77,13 @@ const validateOrderCreateBody = (body) => {
     return "status must be a string"
   }
 
-  if (total_price !== undefined) {
-    const parsedTotal = Number(total_price)
-    if (Number.isNaN(parsedTotal) || parsedTotal < 0) {
-      return "total_price must be a non-negative number"
+  if (!Array.isArray(items) || items.length === 0) {
+    return "items must be a non-empty array"
+  }
+
+  for (const item of items) {
+    if (!Number.isInteger(item.product_id) || !Number.isInteger(item.quantity) || item.quantity <= 0) {
+      return "each item must include integer product_id and quantity > 0"
     }
   }
 
@@ -184,7 +200,7 @@ app.get("/orders/:orderId", async (req, res) => {
   }
 
   try {
-    const order = await Order.fetchById(orderId)
+    const order = await Order.fetchByIdWithItems(orderId)
     if (!order) {
       return res.status(404).json({ error: "Order not found" })
     }
@@ -201,16 +217,12 @@ app.post("/orders", async (req, res) => {
   }
 
   try {
-    const order = await Order.create({
-      customerName: req.body.customer_name,
-      customerEmail: req.body.customer_email,
-      shippingAddress: req.body.shipping_address,
-      status: req.body.status ?? "pending",
-      totalPrice: req.body.total_price === undefined ? 0 : Number(req.body.total_price),
-    })
-
+    const order = await Order.createWithItems(req.body)
     return res.status(201).json({ order: toApiOrder(order) })
   } catch (error) {
+    if (error.message && error.message.startsWith("Product ")) {
+      return res.status(400).json({ error: error.message })
+    }
     return res.status(500).json({ error: "Unable to create order" })
   }
 })

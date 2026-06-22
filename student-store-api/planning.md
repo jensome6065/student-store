@@ -304,3 +304,14 @@ Global API error response shape (used consistently):
 - **Schema translation that went smoothly**: `imageUrl` in Prisma maps cleanly to a snake_case DB/API field with `@map("image_url")`, so DB naming can stay consistent while JS stays idiomatic.
 - **Field decision I made during implementation that wasn't in the original spec**: I used `Decimal @db.Decimal(10, 2)` for `price` to avoid float precision issues and kept API responses as numeric values by converting Decimal to Number in serializers.
 - **Route behavior that needed a spec update**: The Product API section originally documented `GET` and `DELETE`; I expanded Product to full CRUD with `POST /products` and `PUT /products/:productId` so Milestone 1 has all five product endpoints implemented and testable.
+
+## Spec Reconciliation — Milestone 4 (Schema Audit)
+
+### Schema vs. spec gaps found
+- Added missing relation fields to match the original spec exactly: `Product.orderItems` and `Order.items`.
+- Added `OrderItem` relation mappings and snake_case field maps so response payload keys and DB columns align with the contract.
+- No remaining gaps between spec and schema after the OrderItem model and cascade rules were added.
+
+### Cascade delete verification
+- Deleting a Product removes associated OrderItems: ✅ tested
+- Deleting an Order removes associated OrderItems: ✅ tested
