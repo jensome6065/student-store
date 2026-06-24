@@ -15,13 +15,31 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState("All Categories");
   const [searchInputValue, setSearchInputValue] = useState("");
-  const [userInfo, setUserInfo] = useState({ name: "", dorm_number: ""});
+  const [userInfo, setUserInfo] = useState({ name: "", email: ""});
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState({});
   const [isFetching, setIsFetching] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState(null);
   const [order, setOrder] = useState(null);
+
+  // Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsFetching(true);
+      setError(null);
+      try {
+        const response = await axios.get("http://localhost:3001/products");
+        setProducts(response.data.products);
+      } catch (err) {
+        setError(err.message || "Failed to fetch products");
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // Toggles sidebar
   const toggleSidebar = () => setSidebarOpen((isOpen) => !isOpen);
@@ -37,6 +55,48 @@ function App() {
   };
 
   const handleOnCheckout = async () => {
+    setIsCheckingOut(true);
+    setError(null);
+
+    // Validate user info
+    if (!userInfo.name || !userInfo.email) {
+      setError("Please enter your name and email");
+      setIsCheckingOut(false);
+      return;
+    }
+
+    // Check cart is not empty
+    if (Object.keys(cart).length === 0) {
+      setError("Your cart is empty");
+      setIsCheckingOut(false);
+      return;
+    }
+
+    // Transform cart into items array for API
+    const items = Object.entries(cart).map(([productId, quantity]) => ({
+      product_id: parseInt(productId, 10),
+      quantity: quantity
+    }));
+
+    // Build order request body
+    const orderData = {
+      customer_name: userInfo.name,
+      customer_email: userInfo.email,
+      shipping_address: userInfo.email, // Using email as shipping address for student store
+      status: "pending",
+      items: items
+    };
+
+    try {
+      const response = await axios.post("http://localhost:3001/orders", orderData);
+      setOrder(response.data.order);
+      setCart({}); // Clear cart on success
+      setError(null);
+    } catch (err) {
+      setError(err.response?.data?.error || err.message || "Failed to create order");
+    } finally {
+      setIsCheckingOut(false);
+    }
   }
 
 
