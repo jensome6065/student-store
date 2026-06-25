@@ -131,6 +131,16 @@
 .SubNavbar .category-menu li button:active {
   transform: translateY(1px);
 }
+.SubNavbar .category-menu li button .category-count {
+  margin-left: 0.35rem;
+  font-size: 0.85em;
+  color: #666;
+  font-weight: 400;
+}
+.SubNavbar .category-menu li.is-active button .category-count {
+  color: var(--bright-green);
+  font-weight: 500;
+}
 
 .SubNavbar .orders-link {
   display: flex;

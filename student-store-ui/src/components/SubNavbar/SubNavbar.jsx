@@ -1,13 +1,29 @@
 import { Link, useNavigate } from "react-router-dom"
+import { useMemo } from "react"
 import "./SubNavbar.css"
 
-function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handleOnSearchInputChange }) {
+function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handleOnSearchInputChange, products = [] }) {
 
   const navigate = useNavigate();
-  const categories = ["All Categories", "Accessories", "Apparel", "Books", "Snacks", "Supplies"];
 
-  const handleCategoryClick = (cat) => {
-    setActiveCategory(cat);
+  // Generate categories dynamically from products with counts
+  const categories = useMemo(() => {
+    const categoryMap = {};
+    products.forEach(product => {
+      if (product.category) {
+        categoryMap[product.category] = (categoryMap[product.category] || 0) + 1;
+      }
+    });
+
+    const sortedCategories = Object.keys(categoryMap).sort();
+    return [
+      { name: "All Categories", count: products.length },
+      ...sortedCategories.map(cat => ({ name: cat, count: categoryMap[cat] }))
+    ];
+  }, [products]);
+
+  const handleCategoryClick = (categoryName) => {
+    setActiveCategory(categoryName);
     navigate("/");
   };
 
@@ -36,8 +52,11 @@ function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handle
         <div className="row">
           <ul className={`category-menu`}>
             {categories.map((cat) => (
-              <li className={activeCategory === cat ? "is-active" : ""} key={cat}>
-                <button onClick={() => handleCategoryClick(cat)}>{cat}</button>
+              <li className={activeCategory === cat.name ? "is-active" : ""} key={cat.name}>
+                <button onClick={() => handleCategoryClick(cat.name)}>
+                  {cat.name}
+                  <span className="category-count">({cat.count})</span>
+                </button>
               </li>
             ))}
           </ul>

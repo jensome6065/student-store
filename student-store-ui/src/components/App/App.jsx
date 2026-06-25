@@ -128,6 +128,7 @@ function App() {
             setActiveCategory={setActiveCategory}
             searchInputValue={searchInputValue}
             handleOnSearchInputChange={handleOnSearchInputChange}
+            products={products}
           />
           <Routes>
             <Route
