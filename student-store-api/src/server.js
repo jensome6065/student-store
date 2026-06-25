@@ -188,7 +188,12 @@ app.delete("/products/:productId", async (req, res) => {
 
 app.get("/orders", async (req, res) => {
   try {
-    const orders = await Order.fetchAll()
+    const filters = {}
+    if (req.query.email) {
+      filters.customerEmail = req.query.email
+    }
+
+    const orders = await Order.fetchAll(filters)
     return res.status(200).json({ orders: orders.map(toApiOrder) })
   } catch (error) {
     return res.status(500).json({ error: "Unable to fetch orders" })

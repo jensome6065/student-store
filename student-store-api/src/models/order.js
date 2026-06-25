@@ -1,8 +1,15 @@
 const prisma = require("../db/db")
 
 class Order {
-  static async fetchAll() {
+  static async fetchAll(filters = {}) {
+    const where = {}
+
+    if (filters.customerEmail) {
+      where.customerEmail = filters.customerEmail
+    }
+
     return prisma.order.findMany({
+      where,
       orderBy: { id: "asc" },
     })
   }
