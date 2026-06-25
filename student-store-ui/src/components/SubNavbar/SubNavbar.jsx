@@ -1,9 +1,15 @@
+import { Link, useNavigate } from "react-router-dom"
 import "./SubNavbar.css"
 
 function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handleOnSearchInputChange }) {
 
-
+  const navigate = useNavigate();
   const categories = ["All Categories", "Accessories", "Apparel", "Books", "Snacks", "Supplies"];
+
+  const handleCategoryClick = (cat) => {
+    setActiveCategory(cat);
+    navigate("/");
+  };
 
   return (
     <nav className="SubNavbar">
@@ -21,18 +27,22 @@ function SubNavbar({ activeCategory, setActiveCategory, searchInputValue, handle
             />
             <i className="material-icons">search</i>
           </div>
+          <Link to="/orders" className="orders-link">
+            <i className="material-icons">receipt</i>
+            Orders
+          </Link>
         </div>
 
         <div className="row">
           <ul className={`category-menu`}>
             {categories.map((cat) => (
               <li className={activeCategory === cat ? "is-active" : ""} key={cat}>
-                <button onClick={() => setActiveCategory(cat)}>{cat}</button>
+                <button onClick={() => handleCategoryClick(cat)}>{cat}</button>
               </li>
             ))}
           </ul>
         </div>
-        
+
       </div>
     </nav>
   )

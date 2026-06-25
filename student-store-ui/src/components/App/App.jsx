@@ -5,6 +5,8 @@ import SubNavbar from "../SubNavbar/SubNavbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Home from "../Home/Home";
 import ProductDetail from "../ProductDetail/ProductDetail";
+import Orders from "../Orders/Orders";
+import OrderDetail from "../OrderDetail/OrderDetail";
 import NotFound from "../NotFound/NotFound";
 import { removeFromCart, addToCart, getQuantityOfItemInCart, getTotalItemsInCart } from "../../utils/cart";
 import "./App.css";
@@ -143,6 +145,14 @@ function App() {
                   getQuantityOfItemInCart={handleGetItemQuantity}
                 />
               }
+            />
+            <Route
+              path="/orders"
+              element={<Orders />}
+            />
+            <Route
+              path="/orders/:orderId"
+              element={<OrderDetail />}
             />
             <Route
               path="/:productId"

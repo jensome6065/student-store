@@ -131,3 +131,26 @@
 .SubNavbar .category-menu li button:active {
   transform: translateY(1px);
 }
+
+.SubNavbar .orders-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--bright-green);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.SubNavbar .orders-link:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.SubNavbar .orders-link i {
+  font-size: 20px;
+}
