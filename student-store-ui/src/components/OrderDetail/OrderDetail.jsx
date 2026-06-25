@@ -7,16 +7,21 @@ import "./OrderDetail.css";
 function OrderDetail() {
   const { orderId } = useParams();
   const [order, setOrder] = useState(null);
+  const [products, setProducts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchOrder = async () => {
+    const fetchOrderAndProducts = async () => {
       setIsFetching(true);
       setError(null);
       try {
-        const response = await axios.get(`http://localhost:3001/orders/${orderId}`);
-        setOrder(response.data.order);
+        const [orderResponse, productsResponse] = await Promise.all([
+          axios.get(`http://localhost:3001/orders/${orderId}`),
+          axios.get("http://localhost:3001/products")
+        ]);
+        setOrder(orderResponse.data.order);
+        setProducts(productsResponse.data.products);
       } catch (err) {
         if (err.response?.status === 404) {
           setError("Order not found");
@@ -28,7 +33,7 @@ function OrderDetail() {
       }
     };
 
-    fetchOrder();
+    fetchOrderAndProducts();
   }, [orderId]);
 
   if (isFetching) {
@@ -85,18 +90,26 @@ function OrderDetail() {
         <h2>Order Items</h2>
         {order.items && order.items.length > 0 ? (
           <div className="items-list">
-            {order.items.map((item) => (
-              <div key={item.id} className="order-item">
-                <div className="item-info">
-                  <p className="item-product">Product ID: {item.product_id}</p>
-                  <p className="item-quantity">Quantity: {item.quantity}</p>
+            {order.items.map((item) => {
+              const product = products.find((p) => p.id === item.product_id);
+              return (
+                <div key={item.id} className="order-item">
+                  {product && (
+                    <div className="item-image">
+                      <img src={product.image_url} alt={product.name} />
+                    </div>
+                  )}
+                  <div className="item-info">
+                    <p className="item-product">{product ? product.name : `Product ID: ${item.product_id}`}</p>
+                    <p className="item-quantity">Quantity: {item.quantity}</p>
+                  </div>
+                  <div className="item-pricing">
+                    <p className="item-unit-price">{formatPrice(item.unit_price)} each</p>
+                    <p className="item-total">{formatPrice(item.line_total)}</p>
+                  </div>
                 </div>
-                <div className="item-pricing">
-                  <p className="item-unit-price">{formatPrice(item.unit_price)} each</p>
-                  <p className="item-total">{formatPrice(item.line_total)}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
           <p className="no-items">No items in this order</p>
