@@ -1,15 +1,28 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { formatPrice } from "../../utils/format";
 import "./CheckoutSuccess.css";
 
 const CheckoutSuccess = ({ order, setOrder, closeSidebar }) => {
-  const handleOnClose = () => {
+  const navigate = useNavigate();
+
+  const handleOnClose = (event) => {
+    event.stopPropagation();
     setOrder(null);
     closeSidebar();
   };
 
-  const handleOnViewOrder = () => {
+  const handleOnShopMore = (event) => {
+    event.stopPropagation();
+    setOrder(null);
     closeSidebar();
+    navigate("/");
+  };
+
+  const handleOnViewOrder = (event) => {
+    event.stopPropagation();
+    setOrder(null);
+    closeSidebar();
+    navigate(`/orders/${order.id}`);
   };
 
   if (!order) {
@@ -56,10 +69,10 @@ const CheckoutSuccess = ({ order, setOrder, closeSidebar }) => {
         </p>
 
         <div className="card-foot">
-          <Link to={`/orders/${order.id}`} onClick={handleOnViewOrder}>
-            <button className="button">View Order</button>
-          </Link>
-          <button className="button is-success" onClick={handleOnClose}>
+          <button className="button" onClick={handleOnViewOrder}>
+            View Order
+          </button>
+          <button className="button is-success" onClick={handleOnShopMore}>
             Shop More
           </button>
         </div>

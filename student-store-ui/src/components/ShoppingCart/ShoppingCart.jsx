@@ -136,6 +136,12 @@ export default function ShoppingCart({
 }) {
   const [showCheckout, setShowCheckout] = React.useState(false);
 
+  React.useEffect(() => {
+    if (!isOpen) {
+      setShowCheckout(false);
+    }
+  }, [isOpen]);
+
   const handleProceedToCheckout = () => {
     setShowCheckout(true);
   };

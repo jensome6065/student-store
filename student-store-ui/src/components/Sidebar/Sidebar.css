@@ -51,6 +51,38 @@
   width: 100%;
   opacity: 1;
   transition: opacity var(--transition-base);
+  position: relative;
+}
+
+.Sidebar .sidebar-close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all var(--transition-base);
+}
+
+.Sidebar .sidebar-close-button svg {
+  width: 18px;
+  height: 18px;
+  stroke: #ffffff;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+}
+
+.Sidebar .sidebar-close-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.55);
 }
 
 .Sidebar.closed .wrapper .ShoppingCart .open {

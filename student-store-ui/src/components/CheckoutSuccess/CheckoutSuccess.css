@@ -179,3 +179,23 @@
   background: var(--bright-green-hover);
   border-color: var(--bright-green-hover);
 }
+
+.CheckoutSuccess button.close-sidebar-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(0, 0, 0, 0.2);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.CheckoutSuccess button.close-sidebar-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: none;
+}
