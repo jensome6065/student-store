@@ -9,10 +9,16 @@
 .ProductCard .media {
   height: 250px;
   width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
 }
 .ProductCard .media img {
-  height: 250px;
-  width: 248px;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 .ProductCard .product-info {
   flex: 1;

@@ -2,75 +2,115 @@
     "products": [
       {
         "id": 1,
-        "name": "College Hoodie",
+        "name": "Stussy Sport Tee",
         "category": "Apparel",
-        "image_url": "https://tinyurl.com/college-hoodie",
-        "description": "Comfortable and stylish hoodie with the college logo.",
-        "price": 29.99
+        "image_url": "/images/products/stussy_tee.webp",
+        "description": "Classic white Stussy Sport tee with signature logo.",
+        "price": 45.00
       },
       {
         "id": 2,
-        "name": "Algebra Textbook",
-        "category": "Books",
-        "image_url": "https://tinyurl.com/algebra-book",
-        "description": "Comprehensive textbook covering all aspects of algebra.",
-        "price": 59.99
+        "name": "Stussy Lightweight Striped Sweater",
+        "category": "Apparel",
+        "image_url": "/images/products/stussy_sweater.webp",
+        "description": "Black lightweight striped sweater for effortless style.",
+        "price": 120.00
       },
       {
         "id": 3,
-        "name": "College Notebook",
-        "category": "Supplies",
-        "image_url": "https://tinyurl.com/college-notebook",
-        "description": "Durable notebook with college branding, perfect for note-taking.",
-        "price": 6.99
+        "name": "Stussy x Mountain Hardwear Caelum Dome Beanie",
+        "category": "Accessories",
+        "image_url": "/images/products/stussy_beanie.webp",
+        "description": "Wild water colorway beanie from the Mountain Hardwear collaboration.",
+        "price": 65.00
       },
       {
         "id": 4,
-        "name": "College Pen",
-        "category": "Supplies",
-        "image_url": "https://tinyurl.com/college-pen",
-        "description": "Smooth-writing pen with college logo, ideal for writing and exams.",
-        "price": 1.99
+        "name": "Supreme x Spitfire Zip Up Hoodie",
+        "category": "Apparel",
+        "image_url": "/images/products/supreme_zipup.webp",
+        "description": "Iconic Supreme x Spitfire collaboration zip up hooded sweatshirt.",
+        "price": 198.00
       },
       {
         "id": 5,
-        "name": "College Mug",
-        "category": "Accessories",
-        "image_url": "https://tinyurl.com/college-mug",
-        "description": "Ceramic mug with college emblem, perfect for coffee or tea.",
-        "price": 9.99
+        "name": "Akimbo Club Chain-Peeker Lightweight Tee",
+        "category": "Apparel",
+        "image_url": "/images/products/akimbo_tee.jpg",
+        "description": "Realtree camo Chain-Peeker lightweight tee by Akimbo Club.",
+        "price": 65.00
       },
       {
         "id": 6,
-        "name": "College Beanie",
+        "name": "Madhappy Classics Fleece Hoodie",
         "category": "Apparel",
-        "image_url": "https://tinyurl.com/college-beanie",
-        "description": "Warm and cozy beanie with the college logo, perfect for cold weather.",
-        "price": 14.99
+        "image_url": "/images/products/madhappy_hoodie.webp",
+        "description": "Premium core fleece hoodie with Madhappy's signature comfort.",
+        "price": 165.00
       },
       {
         "id": 7,
-        "name": "Energy Drink",
-        "category": "Snacks",
-        "image_url": "https://tinyurl.com/cp-energy-drink",
-        "description": "Refreshing energy drink to keep you focused during long study sessions.",
-        "price": 2.99
+        "name": "Jordan 4 Retro White Oreo",
+        "category": "Footwear",
+        "image_url": "/images/products/jordan_oreo.avif",
+        "description": "Classic Jordan 4 Retro in White Oreo colorway.",
+        "price": 215.00
       },
       {
         "id": 8,
-        "name": "Chocolate Bar",
-        "category": "Snacks",
-        "image_url": "https://tinyurl.com/cp-chocolate-bar",
-        "description": "Delicious chocolate bar for a quick snack between classes.",
-        "price": 1.49
+        "name": "Salomon XT-6 GORE-TEX",
+        "category": "Footwear",
+        "image_url": "/images/products/salomon_xt6.webp",
+        "description": "Technical trail runner with GORE-TEX protection.",
+        "price": 210.00
       },
       {
         "id": 9,
-        "name": "Granola Bar",
-        "category": "Snacks",
-        "image_url": "https://tinyurl.com/cp-granola-bar",
-        "description": "Healthy granola bar, perfect for a quick energy boost.",
-        "price": 1.29
+        "name": "BAPE x Adidas Samba Black",
+        "category": "Footwear",
+        "image_url": "/images/products/bape_samba.webp",
+        "description": "Limited edition BAPE x Adidas Samba in black.",
+        "price": 180.00
+      },
+      {
+        "id": 10,
+        "name": "Kith x BMW Army Boot Pink",
+        "category": "Footwear",
+        "image_url": "/images/products/kith_army.webp",
+        "description": "Pink Kith x BMW Army Boot collaboration.",
+        "price": 325.00
+      },
+      {
+        "id": 11,
+        "name": "Jordan 1 Retro High Shadow 2.0",
+        "category": "Footwear",
+        "image_url": "/images/products/jordan_shadow.webp",
+        "description": "Air Jordan 1 Retro High in Shadow 2.0 colorway with grey and black.",
+        "price": 170.00
+      },
+      {
+        "id": 12,
+        "name": "AAPE Baby Milo Claw Machine Tee",
+        "category": "Apparel",
+        "image_url": "/images/products/aape_tee.jpg",
+        "description": "AAPE by A Bathing Ape Baby Milo claw machine graphic t-shirt.",
+        "price": 88.00
+      },
+      {
+        "id": 13,
+        "name": "Navy Blue New York Yankees Scribble New Era 59Fifty Fitted",
+        "category": "Accessories",
+        "image_url": "/images/products/yankees_fitted.webp",
+        "description": "Navy blue New York Yankees fitted cap with scribble design by New Era.",
+        "price": 45.00
+      },
+      {
+        "id": 14,
+        "name": "New York Yankees Sky Blue/Pink 1998 WS 9Fifty A Frame Snapback Hat",
+        "category": "Accessories",
+        "image_url": "/images/products/yankees_cap.webp",
+        "description": "Sky blue and pink New York Yankees 1998 World Series 9Fifty A Frame snapback.",
+        "price": 42.00
       }
     ]
   }
