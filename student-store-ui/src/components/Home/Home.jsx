@@ -11,13 +11,25 @@ function Home({isFetching, products, addToCart, removeFromCart, searchInputValue
 
   // Filters products by the active category if it is not 'All Categories',
   // then further filters the result by the search input value if it is not empty.
+  // Search checks both product name and description for matches.
   const productsToShow = Boolean(searchInputValue)
-    ? productsByCategory.filter((p) => p.name.toLowerCase().indexOf(searchInputValue.toLowerCase()) !== -1)
+    ? productsByCategory.filter((p) => {
+        const searchLower = searchInputValue.toLowerCase();
+        return (
+          p.name.toLowerCase().includes(searchLower) ||
+          p.description.toLowerCase().includes(searchLower)
+        );
+      })
     : productsByCategory
 
 
   return (
     <div className="Home">
+      {searchInputValue && (
+        <div className="search-results-info">
+          Showing {productsToShow.length} result{productsToShow.length !== 1 ? 's' : ''} for "{searchInputValue}"
+        </div>
+      )}
       <ProductGrid
         products={productsToShow}
         isFetching={isFetching}

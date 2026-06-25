@@ -1,16 +1,20 @@
 import ProductCard from "../ProductCard/ProductCard"
 import "./ProductGrid.css"
 
-function ProductGrid({ addToCart, removeFromCart, getQuantityOfItemInCart, products = [] }) {
+function ProductGrid({ addToCart, removeFromCart, getQuantityOfItemInCart, products = [], isFetching }) {
 
   return (
     <div id="Buy" className="ProductGrid">
       <div className="content">
         <div className="grid">
 
-          {!products?.length ? (
+          {isFetching ? (
             <div className="card">
-              <p>No products available</p>
+              <p>Loading products...</p>
+            </div>
+          ) : !products?.length ? (
+            <div className="card">
+              <p>No products found</p>
             </div>
           ) : products.map((product) => (
             <ProductCard
@@ -21,7 +25,7 @@ function ProductGrid({ addToCart, removeFromCart, getQuantityOfItemInCart, produ
               removeFromCart={() => removeFromCart(product)}
             />
           ))}
-          
+
         </div>
       </div>
     </div>
