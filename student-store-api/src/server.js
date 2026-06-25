@@ -234,7 +234,7 @@ app.post("/orders", async (req, res) => {
   }
 })
 
-app.patch("/orders/:orderId", async (req, res) => {
+app.put("/orders/:orderId", async (req, res) => {
   const orderId = parseId(req.params.orderId)
   if (!orderId) {
     return res.status(400).json({ error: "Invalid order id" })
