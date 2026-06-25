@@ -1,52 +1,55 @@
-import "./CheckoutSuccess.css"
+import { Link } from "react-router-dom";
+import { formatPrice } from "../../utils/format";
+import "./CheckoutSuccess.css";
 
 const CheckoutSuccess = ({ order, setOrder }) => {
   const handleOnClose = () => {
-    setOrder(null)
-  }
+    setOrder(null);
+  };
 
-  const renderReceipt = () => (
-    <>
-      <p className="header">{order.purchase.receipt.lines[0]}</p>
-      <ul className="purchase">
-        {order.purchase.receipt.lines.slice(1).map((line, idx) => (Boolean(line) ? <li key={idx}>{line}</li> : null))}
-      </ul>
-    </>
-  )
+  if (!order) {
+    return null;
+  }
 
   return (
     <div className="CheckoutSuccess">
       <h3>
-        Checkout Info{" "}
+        Order Confirmed{" "}
         <span className={`icon button`}>
           <i className="material-icons md-48">fact_check</i>
         </span>
       </h3>
-      {order?.purchase ? (
-        <div className="card">
-          <header className="card-head">
-            <h4 className="card-title">Receipt</h4>
-          </header>
-          <section className="card-body">{order?.purchase?.receipt ? renderReceipt() : "Success!"}</section>
-          <footer className="card-foot">
-            <button className="button is-success" onClick={handleOnClose}>
-              Shop More
-            </button>
-            <button className="button" onClick={handleOnClose}>
-              Exit
-            </button>
-          </footer>
-        </div>
-      ) : (
-        <div className="content">
-          <p>
-            A confirmation email will be sent to you so that you can confirm this order. Once you have confirmed the
-            order, it will be delivered to your dorm room.
-          </p>
-        </div>
-      )}
+      <div className="card">
+        <header className="card-head">
+          <h4 className="card-title">Order #{order.id}</h4>
+        </header>
+        <section className="card-body">
+          <div className="order-summary">
+            <p className="confirmation-message">
+              Thank you, {order.customer_name}! Your order has been placed successfully.
+            </p>
+            <div className="order-details">
+              <p><strong>Email:</strong> {order.customer_email}</p>
+              <p><strong>Status:</strong> {order.status}</p>
+              <p><strong>Total:</strong> {formatPrice(order.total_price)}</p>
+              <p><strong>Items:</strong> {order.items?.length || 0} item(s)</p>
+            </div>
+            <p className="delivery-info">
+              A confirmation email will be sent to you. Once confirmed, your order will be delivered to your dorm room.
+            </p>
+          </div>
+        </section>
+        <footer className="card-foot">
+          <Link to={`/orders/${order.id}`}>
+            <button className="button">View Order</button>
+          </Link>
+          <button className="button is-success" onClick={handleOnClose}>
+            Shop More
+          </button>
+        </footer>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default CheckoutSuccess
+export default CheckoutSuccess;
