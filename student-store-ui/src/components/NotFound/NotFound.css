@@ -5,39 +5,105 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #f8f9fa;
 }
+
 .NotFound .banner {
   width: 100%;
   max-width: 100vw;
-  height: 130px;
+  height: 200px;
   background: var(--dark-blue);
   display: flex;
   align-items: center;
+  position: relative;
+  overflow: hidden;
 }
+
+.NotFound .banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bright-green);
+  opacity: 0.1;
+}
+
 .NotFound .banner .content {
   max-width: var(--content-width);
   width: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  background: var(--dark-blue);
+  padding: 0 var(--side-padding);
+  position: relative;
+  z-index: 1;
 }
+
 .NotFound .banner .content h2 {
   color: white;
+  font-size: 48px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
+
 .NotFound .content {
   max-width: var(--content-width);
   width: 100%;
   margin: 0 auto;
 }
+
 .NotFound .cta {
-  min-height: 400px;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 60px var(--side-padding);
+  text-align: center;
 }
+
 .NotFound .cta h1 {
-  font-size: 90px;
-  margin-bottom: 20px;
+  font-size: 120px;
+  margin-bottom: 24px;
+  font-weight: 900;
+  color: var(--bright-green);
+  animation: fadeInScale 0.6s ease;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.NotFound .cta p {
+  font-size: 20px;
+  color: var(--font-light);
+  margin-bottom: 40px;
+  max-width: 500px;
+}
+
+.NotFound .cta a {
+  padding: 16px 40px;
+  background: var(--bright-green);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 18px;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg);
+  display: inline-block;
+}
+
+.NotFound .cta a:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
 }

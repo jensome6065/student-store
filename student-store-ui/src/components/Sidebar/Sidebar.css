@@ -4,37 +4,62 @@
   align-items: center;
   width: 100%;
   flex: 1;
-  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all var(--transition-slow) cubic-bezier(0.215, 0.61, 0.355, 1);
   position: fixed;
-  z-index: 100;
+  z-index: 200;
   top: 0px;
   height: 100vh;
   padding: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding-bottom: 2rem;
-  background: var(--dark-blue);
-  border-right: solid 1px white;
+  background: #1a1f36;
+  box-shadow: var(--shadow-xl);
 }
+
+.Sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.Sidebar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.Sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.Sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
 .Sidebar.closed {
-  width: 60px;
+  width: 80px;
 }
+
 .Sidebar.open {
-  width: 575px;
+  width: 600px;
 }
+
 .Sidebar .wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
+
 .Sidebar .toggle-button {
-  margin-top: 20px;
-  transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+  margin-top: 24px;
+  transition: all var(--transition-base) cubic-bezier(0.075, 0.82, 0.165, 1);
+  background: rgba(0, 212, 170, 0.1);
+  border-radius: 12px;
+  padding: 8px;
 }
-/* .Sidebar .toggle-button i {
-  color: white;
-  cursor: pointer;
-} */
+
+.Sidebar .toggle-button:hover {
+  background: rgba(0, 212, 170, 0.2);
+}
+
 .Sidebar .toggle-button.open {
   transform: rotateY(180deg);
 }
@@ -43,4 +68,32 @@
   margin-right: 10px;
   cursor: pointer;
   color: white;
+}
+
+.Sidebar .logo {
+  padding: 32px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  transition: all var(--transition-base);
+}
+
+.Sidebar.closed .logo {
+  padding: 24px 12px;
+}
+
+.Sidebar .logo img {
+  width: 100%;
+  max-width: 120px;
+  transition: all var(--transition-base);
+  filter: brightness(0) invert(1);
+}
+
+.Sidebar.closed .logo img {
+  max-width: 48px;
+}
+
+.Sidebar .logo:hover img {
+  transform: scale(1.05);
 }

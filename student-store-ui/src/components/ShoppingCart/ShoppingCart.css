@@ -38,15 +38,16 @@
   display: flex;
   flex-direction: column;
   background: var(--pure-white);
-  border: solid 1px var(--border-color);
-  border-radius: 4px;
+  border-radius: 12px;
   width: 100%;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
 }
 .ShoppingCart .header-row {
   display: flex;
-  height: 50px;
-  background: var(--dark-blue);
-  margin-bottom: 15px;
+  height: 56px;
+  background: var(--bright-green);
+  margin-bottom: 0;
 }
 .ShoppingCart .header-row span {
   flex: 1;
@@ -54,9 +55,11 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: 17px;
-  font-weight: 600;
-  margin-left: 15px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 .ShoppingCart .header-row span.center {
   display: flex;
@@ -69,25 +72,35 @@
 .ShoppingCart .product-row {
   display: flex;
   flex-direction: row;
-  padding-bottom: 20px;
-  margin-top: 10px;
+  padding: 20px;
+  margin-top: 0;
   border-bottom: solid 1px var(--border-color);
+  transition: background var(--transition-fast);
 }
+
+.ShoppingCart .product-row:hover {
+  background: rgba(0, 212, 170, 0.05);
+}
+
 .ShoppingCart .product-row span {
   flex: 1;
+  color: var(--font-dark);
 }
 .ShoppingCart .product-row span.center {
   display: flex;
   justify-content: center;
+  font-weight: 600;
 }
 
 .ShoppingCart .receipt {
   display: flex;
   flex-direction: column;
   background: var(--pure-white);
-  border-radius: 4px;
+  border-radius: 12px;
   width: 100%;
-  margin-top: 10px;
+  margin-top: 20px;
+  padding: 24px;
+  box-shadow: var(--shadow-md);
 }
 .ShoppingCart .receipt span {
   flex: 1;
@@ -95,7 +108,10 @@
 .ShoppingCart .receipt span.center {
   display: flex;
   justify-content: center;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--bright-green);
+  font-family: "Space Grotesk", sans-serif;
 }
 .ShoppingCart .receipt .receipt-subtotal,
 .ShoppingCart .receipt .receipt-taxes,
@@ -103,12 +119,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 0;
+  padding: 12px 0;
+  color: var(--font-dark);
+  font-size: 16px;
 }
 .ShoppingCart .receipt .receipt-total {
-  border-top: solid 1px var(--border-color);
+  border-top: 2px solid var(--border-color);
+  margin-top: 8px;
+  padding-top: 16px;
+  font-size: 20px;
+  font-weight: 700;
 }
 .ShoppingCart .receipt .label {
   font-weight: 600;
-  padding-left: 10px;
+  color: var(--font-dark);
 }

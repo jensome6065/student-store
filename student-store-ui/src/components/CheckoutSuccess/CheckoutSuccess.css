@@ -97,11 +97,25 @@
   flex-wrap: wrap;
 }
 .CheckoutSuccess button {
-  margin: 10px;
-  padding: 12px 18px;
-  font-size: 18px;
+  margin: 10px 0;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
-  background: transparent;
-  border: solid 1px white;
-  color: white;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  color: var(--dark-blue);
+  border-radius: 12px;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+}
+
+.CheckoutSuccess button:hover {
+  background: var(--pure-white);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.CheckoutSuccess button:active {
+  transform: translateY(0);
 }

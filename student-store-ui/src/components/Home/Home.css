@@ -8,11 +8,26 @@
 }
 
 .Home .search-results-info {
-  padding: 1rem 2rem;
-  background-color: #f0f7ff;
-  border-bottom: 2px solid #d0e7ff;
-  color: #1a5490;
-  font-size: 0.95rem;
-  font-weight: 500;
+  padding: 1.5rem 2rem;
+  background: #eff6ff;
+  border-left: 4px solid var(--bright-green);
+  color: var(--font-dark);
+  font-size: 1rem;
+  font-weight: 600;
   text-align: center;
+  margin: 0 var(--side-padding);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

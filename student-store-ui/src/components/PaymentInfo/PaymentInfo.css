@@ -1,47 +1,105 @@
 .PaymentInfo {
-  padding: 16px;
+  padding: 24px;
 }
+
 .PaymentInfo > h3 {
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px;
 }
+
 .PaymentInfo > h3 > span {
-  margin-left: 10px;
+  margin-left: 12px;
 }
+
 .PaymentInfo .label {
-  color: white;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
 .PaymentInfo .is-danger {
   color: var(--bright-red);
+  background: rgba(239, 68, 68, 0.1);
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin: 12px 0;
+  font-weight: 500;
 }
+
 .PaymentInfo .input-field {
   width: 100%;
-  margin: 5px 0;
+  margin: 16px 0;
 }
+
 .PaymentInfo .input-field .label {
-  color: white;
+  color: rgba(255, 255, 255, 0.95);
 }
+
 .PaymentInfo .input-field .control {
   width: 100%;
-  margin: 5px 0;
+  margin: 8px 0;
 }
+
 .PaymentInfo .input-field .control input {
   width: 100%;
-  height: 36px;
-  padding: 0 15px;
-  border-radius: 8px;
-  border: solid 1px #e4e4e4;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.95);
   flex: 1;
   font-size: 16px;
+  transition: all var(--transition-base);
+  outline: none;
 }
+
+.PaymentInfo .input-field .control input:focus {
+  border-color: var(--bright-green);
+  background: var(--pure-white);
+  box-shadow: 0 0 0 4px rgba(0, 212, 170, 0.2);
+}
+
+.PaymentInfo .input-field .control input::placeholder {
+  color: var(--muted);
+}
+
 .PaymentInfo button {
-  margin-top: 10px;
-  padding: 12px 18px;
+  margin-top: 24px;
+  padding: 16px 32px;
   font-size: 18px;
+  font-weight: 700;
   cursor: pointer;
-  background: transparent;
-  border: solid 1px white;
+  background: var(--bright-green);
+  border: none;
   color: white;
+  border-radius: 12px;
+  width: 100%;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.PaymentInfo button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.PaymentInfo button:active {
+  transform: translateY(0);
+}
+
+.PaymentInfo button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
 }
