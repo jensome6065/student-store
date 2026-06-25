@@ -45,6 +45,7 @@ function App() {
 
   // Toggles sidebar
   const toggleSidebar = () => setSidebarOpen((isOpen) => !isOpen);
+  const closeSidebar = () => setSidebarOpen(false);
 
   // Functions to change state (used for lifting state)
   const handleOnRemoveFromCart = (item) => setCart(removeFromCart(cart, item));
@@ -114,6 +115,7 @@ function App() {
           isOpen={sidebarOpen}
           products={products}
           toggleSidebar={toggleSidebar}
+          closeSidebar={closeSidebar}
           isCheckingOut={isCheckingOut}
           addToCart={handleOnAddToCart}
           removeFromCart={handleOnRemoveFromCart}

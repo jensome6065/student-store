@@ -131,6 +131,7 @@ export default function ShoppingCart({
   isCheckingOut,
   order,
   setOrder,
+  closeSidebar,
   error,
 }) {
   const [showCheckout, setShowCheckout] = React.useState(false);
@@ -148,7 +149,7 @@ export default function ShoppingCart({
       {isOpen ? (
         <div className="open">
           {order ? (
-            <CheckoutSuccess userInfo={userInfo} order={order} setOrder={setOrder} />
+            <CheckoutSuccess userInfo={userInfo} order={order} setOrder={setOrder} closeSidebar={closeSidebar} />
           ) : showCheckout ? (
             <>
               <div className="checkout-header">

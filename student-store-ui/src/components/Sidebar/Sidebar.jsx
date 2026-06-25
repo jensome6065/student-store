@@ -1,11 +1,9 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import ShoppingCart from "../ShoppingCart/ShoppingCart"
-import logo from "../../assets/codepath.svg"
 import "./Sidebar.css"
 
 
-function Sidebar({ cart, isOpen, products, userInfo, setUserInfo, toggleSidebar, handleOnCheckout,isCheckingOut, order, setOrder,error,}) {
+function Sidebar({ cart, isOpen, products, userInfo, setUserInfo, toggleSidebar, closeSidebar, handleOnCheckout,isCheckingOut, order, setOrder,error,}) {
   const [isHovered, setIsHovered] = React.useState(false);
   const [hasInteracted, setHasInteracted] = React.useState(false);
   const hoverTimeoutRef = React.useRef(null);
@@ -86,6 +84,7 @@ function Sidebar({ cart, isOpen, products, userInfo, setUserInfo, toggleSidebar,
           error={error}
           order={order}
           setOrder={setOrder}
+          closeSidebar={closeSidebar}
         />
         
       </div>
