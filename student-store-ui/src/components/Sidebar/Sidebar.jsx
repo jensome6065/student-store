@@ -24,7 +24,6 @@ function Sidebar({ cart, isOpen, products, userInfo, setUserInfo, toggleSidebar,
           isOpen={isOpen}
           cart={cart}
           products={products}
-          toggleSidebar={toggleSidebar}
           userInfo={userInfo}
           setUserInfo={setUserInfo}
           handleOnCheckout={handleOnCheckout}

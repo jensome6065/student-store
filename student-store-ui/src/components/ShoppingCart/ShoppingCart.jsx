@@ -102,7 +102,6 @@ export default function ShoppingCart({
   isOpen,
   products,
   cart,
-  toggleSidebar,
   userInfo,
   setUserInfo,
   handleOnCheckout,
@@ -115,15 +114,20 @@ export default function ShoppingCart({
     <div className="ShoppingCart">
       {isOpen ? (
         <div className="open">
-          <CartItems products={products} cart={cart} />
-          <PaymentInfo
-            userInfo={userInfo}
-            setUserInfo={setUserInfo}
-            handleOnCheckout={handleOnCheckout}
-            isCheckingOut={isCheckingOut}
-            error={error}
-          />
-          <CheckoutSuccess userInfo={userInfo} order={order} setOrder={setOrder} />
+          {order ? (
+            <CheckoutSuccess userInfo={userInfo} order={order} setOrder={setOrder} />
+          ) : (
+            <>
+              <CartItems products={products} cart={cart} />
+              <PaymentInfo
+                userInfo={userInfo}
+                setUserInfo={setUserInfo}
+                handleOnCheckout={handleOnCheckout}
+                isCheckingOut={isCheckingOut}
+                error={error}
+              />
+            </>
+          )}
         </div>
       ) : (
         null

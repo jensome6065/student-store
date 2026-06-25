@@ -94,6 +94,7 @@ function App() {
       setOrder(response.data.order);
       setCart({}); // Clear cart on success
       setError(null);
+      setSidebarOpen(true); // Keep sidebar open to show success message
     } catch (err) {
       setError(err.response?.data?.error || err.message || "Failed to create order");
     } finally {
