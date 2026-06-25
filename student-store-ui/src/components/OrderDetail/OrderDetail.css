@@ -56,6 +56,12 @@
   margin: 0;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
 .order-status {
   padding: 0.5rem 1rem;
   background-color: #e3f2fd;
@@ -64,6 +70,35 @@
   font-size: 1rem;
   font-weight: 500;
   text-transform: capitalize;
+}
+
+.reorder-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+}
+
+.reorder-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+}
+
+.reorder-button:active {
+  transform: translateY(0);
+}
+
+.reorder-button i {
+  font-size: 1.2rem;
 }
 
 .order-info-grid {
@@ -122,6 +157,16 @@
   border-radius: 8px;
 }
 
+.item-image-link {
+  flex-shrink: 0;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.item-image-link:hover {
+  transform: scale(1.05);
+}
+
 .item-image {
   flex-shrink: 0;
   width: 80px;
@@ -129,7 +174,12 @@
   border-radius: 8px;
   overflow: hidden;
   background: white;
-  border: 1px solid #e0e0e0;
+  border: 2px solid #e0e0e0;
+  transition: border-color 0.2s ease;
+}
+
+.item-image-link:hover .item-image {
+  border-color: #4a90e2;
 }
 
 .item-image img {
@@ -142,11 +192,25 @@
   flex: 1;
 }
 
+.item-product-link {
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.item-product-link:hover {
+  opacity: 0.7;
+}
+
 .item-product {
   font-size: 1rem;
   font-weight: 500;
   color: #1a1a1a;
   margin-bottom: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.item-product-link .item-product:hover {
+  color: #4a90e2;
 }
 
 .item-quantity {
@@ -214,6 +278,17 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .reorder-button {
+    width: 100%;
+    justify-content: center;
   }
 
   .order-info-grid {

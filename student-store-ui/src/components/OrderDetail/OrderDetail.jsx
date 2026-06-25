@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { formatPrice, formatDate } from "../../utils/format";
 import "./OrderDetail.css";
 
 function OrderDetail() {
   const { orderId } = useParams();
+  const navigate = useNavigate();
   const [order, setOrder] = useState(null);
   const [products, setProducts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
+
+  const handleReorder = () => {
+    navigate('/');
+  };
 
   useEffect(() => {
     const fetchOrderAndProducts = async () => {
@@ -64,7 +69,13 @@ function OrderDetail() {
       <div className="order-summary">
         <div className="summary-header">
           <h1>Order #{order.id}</h1>
-          <div className="order-status">{order.status}</div>
+          <div className="header-actions">
+            <div className="order-status">{order.status}</div>
+            <button className="reorder-button" onClick={handleReorder}>
+              <i className="material-icons">refresh</i>
+              Reorder
+            </button>
+          </div>
         </div>
 
         <div className="order-info-grid">
@@ -94,13 +105,21 @@ function OrderDetail() {
               const product = products.find((p) => p.id === item.product_id);
               return (
                 <div key={item.id} className="order-item">
-                  {product && (
-                    <div className="item-image">
-                      <img src={product.image_url} alt={product.name} />
-                    </div>
-                  )}
+                  {product ? (
+                    <Link to={`/${product.id}`} className="item-image-link">
+                      <div className="item-image">
+                        <img src={product.image_url} alt={product.name} />
+                      </div>
+                    </Link>
+                  ) : null}
                   <div className="item-info">
-                    <p className="item-product">{product ? product.name : `Product ID: ${item.product_id}`}</p>
+                    {product ? (
+                      <Link to={`/${product.id}`} className="item-product-link">
+                        <p className="item-product">{product.name}</p>
+                      </Link>
+                    ) : (
+                      <p className="item-product">Product ID: {item.product_id}</p>
+                    )}
                     <p className="item-quantity">Quantity: {item.quantity}</p>
                   </div>
                   <div className="item-pricing">
