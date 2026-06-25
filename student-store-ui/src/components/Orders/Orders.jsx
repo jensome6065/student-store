@@ -38,6 +38,11 @@ function Orders() {
     <div className="Orders">
       <div className="orders-header">
         <h1>Past Orders</h1>
+        {!isFetching && orders.length > 0 && (
+          <p className="orders-count">
+            {orders.length} {orders.length === 1 ? 'order' : 'orders'} found
+          </p>
+        )}
         <div className="filter-section">
           <input
             type="text"
