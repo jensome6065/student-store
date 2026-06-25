@@ -1,9 +1,10 @@
 .Orders {
-  padding: 2rem;
-  max-width: 1200px;
+  padding: 2rem var(--side-padding);
+  max-width: var(--content-width);
   margin: 0 auto;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%);
+  background: #f8f9fa;
+  width: 100%;
 }
 
 .orders-header {
@@ -36,18 +37,18 @@
   align-items: center;
   gap: 1rem;
   background: white;
-  padding: 1rem;
+  padding: 1.25rem 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .email-filter {
-  padding: 0.75rem 1rem;
+  padding: 0.875rem 1.25rem;
   font-size: 1rem;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 12px;
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
   transition: all 0.2s ease;
   background: #fafafa;
 }
@@ -93,9 +94,9 @@
 }
 
 .orders-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 1.5rem;
   animation: fadeIn 0.4s ease-out;
 }
 
@@ -112,16 +113,17 @@
 
 .order-card {
   display: block;
-  padding: 1.5rem;
+  padding: 1.75rem;
   background: white;
   border: 2px solid #e8e8e8;
-  border-radius: 12px;
+  border-radius: 16px;
   text-decoration: none;
   color: inherit;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
+  height: 100%;
 }
 
 .order-card::before {

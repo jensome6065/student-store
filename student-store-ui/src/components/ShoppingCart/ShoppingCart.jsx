@@ -1,3 +1,4 @@
+import React from "react";
 import PaymentInfo from "../PaymentInfo/PaymentInfo";
 import CheckoutSuccess from "../CheckoutSuccess/CheckoutSuccess";
 import { calculateTaxesAndFees, calculateTotal } from "../../utils/calculations";
@@ -74,20 +75,42 @@ const CartTable = ({ products, cart }) => {
   );
 };
 
-const CartItems = ({ products, cart }) => {
+const CartItems = ({ products, cart, onProceedToCheckout }) => {
   const hasItems = Object.keys(cart).length;
+
+  const productMapping = products.reduce((acc, item) => {
+    acc[item.id] = item;
+    return acc;
+  }, {});
+
+  const productRows = Object.keys(cart).map((productId) => {
+    const product = productMapping[productId];
+    if (!product) return null;
+    return {
+      ...product,
+      quantity: cart[productId],
+      totalPrice: cart[productId] * product.price,
+    };
+  }).filter(row => row !== null);
+
+  const subTotal = productRows.reduce((acc, p) => acc + p.totalPrice, 0);
+  const total = calculateTotal(subTotal);
 
   return (
     <>
       <h3 className="">
         Shopping Cart{" "}
         <span className="button">
-          <i className="material-icons md-48">add_shopping_cart</i>
+          <i className="material-icons md-48">shopping_cart</i>
         </span>
       </h3>
       {hasItems ? (
         <>
           <CartTable products={products} cart={cart} />
+          <button className="checkout-next-button" onClick={onProceedToCheckout}>
+            Proceed to Checkout
+            <i className="material-icons">arrow_forward</i>
+          </button>
         </>
       ) : (
         <>
@@ -110,15 +133,30 @@ export default function ShoppingCart({
   setOrder,
   error,
 }) {
+  const [showCheckout, setShowCheckout] = React.useState(false);
+
+  const handleProceedToCheckout = () => {
+    setShowCheckout(true);
+  };
+
+  const handleBackToCart = () => {
+    setShowCheckout(false);
+  };
+
   return (
     <div className="ShoppingCart">
       {isOpen ? (
         <div className="open">
           {order ? (
             <CheckoutSuccess userInfo={userInfo} order={order} setOrder={setOrder} />
-          ) : (
+          ) : showCheckout ? (
             <>
-              <CartItems products={products} cart={cart} />
+              <div className="checkout-header">
+                <button className="back-to-cart" onClick={handleBackToCart}>
+                  <i className="material-icons">arrow_back</i>
+                  Back to Cart
+                </button>
+              </div>
               <PaymentInfo
                 userInfo={userInfo}
                 setUserInfo={setUserInfo}
@@ -126,6 +164,10 @@ export default function ShoppingCart({
                 isCheckingOut={isCheckingOut}
                 error={error}
               />
+            </>
+          ) : (
+            <>
+              <CartItems products={products} cart={cart} onProceedToCheckout={handleProceedToCheckout} />
             </>
           )}
         </div>

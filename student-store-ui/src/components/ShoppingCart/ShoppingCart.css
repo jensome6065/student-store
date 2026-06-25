@@ -1,23 +1,35 @@
 .ShoppingCart {
   width: 100%;
   color: white;
+  padding: 0 20px;
 }
 .ShoppingCart .open {
-  max-width: 550px;
+  max-width: 560px;
+  margin: 0 auto;
 }
 .ShoppingCart .open > h3 {
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 24px 0;
+  gap: 12px;
 }
 .ShoppingCart .open > h3 > span {
-  margin-left: 10px;
+  display: flex;
+  align-items: center;
 }
 .ShoppingCart .notification {
-  color: white;
+  color: rgba(255, 255, 255, 0.9);
   text-align: center;
-  margin: 10px;
+  margin: 32px 0;
+  padding: 32px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 .ShoppingCart .cart-icons {
   display: flex;
@@ -133,4 +145,68 @@
 .ShoppingCart .receipt .label {
   font-weight: 600;
   color: var(--font-dark);
+}
+
+.ShoppingCart .checkout-next-button {
+  width: 100%;
+  padding: 18px 32px;
+  margin-top: 24px;
+  background: var(--bright-green);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ShoppingCart .checkout-next-button:hover {
+  background: var(--bright-green-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.ShoppingCart .checkout-next-button:active {
+  transform: translateY(0);
+}
+
+.ShoppingCart .checkout-next-button i {
+  font-size: 24px;
+}
+
+.ShoppingCart .checkout-header {
+  margin-bottom: 24px;
+}
+
+.ShoppingCart .back-to-cart {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-base);
+}
+
+.ShoppingCart .back-to-cart:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.ShoppingCart .back-to-cart i {
+  font-size: 20px;
+  margin: 0;
 }

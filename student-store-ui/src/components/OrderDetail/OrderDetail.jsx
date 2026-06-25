@@ -1,20 +1,15 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { formatPrice, formatDate } from "../../utils/format";
 import "./OrderDetail.css";
 
 function OrderDetail() {
   const { orderId } = useParams();
-  const navigate = useNavigate();
   const [order, setOrder] = useState(null);
   const [products, setProducts] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
-
-  const handleReorder = () => {
-    navigate('/');
-  };
 
   useEffect(() => {
     const fetchOrderAndProducts = async () => {
@@ -71,10 +66,6 @@ function OrderDetail() {
           <h1>Order #{order.id}</h1>
           <div className="header-actions">
             <div className="order-status">{order.status}</div>
-            <button className="reorder-button" onClick={handleReorder}>
-              <i className="material-icons">refresh</i>
-              Reorder
-            </button>
           </div>
         </div>
 
@@ -91,8 +82,6 @@ function OrderDetail() {
             <h3>Order Details</h3>
             <p className="info-label">Order Date</p>
             <p className="info-value">{formatDate(order.created_at)}</p>
-            <p className="info-label">Shipping Address</p>
-            <p className="info-value">{order.shipping_address}</p>
           </div>
         </div>
       </div>

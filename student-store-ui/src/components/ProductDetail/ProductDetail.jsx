@@ -5,13 +5,40 @@ import NotFound from "../NotFound/NotFound";
 import { formatPrice } from "../../utils/format";
 import "./ProductDetail.css";
 
-function ProductDetail({ addToCart, removeFromCart, getQuantityOfItemInCart }) {
-  
+function ProductDetail({ addToCart, removeFromCart, getQuantityOfItemInCart, products }) {
+
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setIsFetching(true);
+      setError(null);
+      try {
+        // Try to find product in passed products prop first
+        if (products && products.length > 0) {
+          const foundProduct = products.find(p => p.id === parseInt(productId, 10));
+          if (foundProduct) {
+            setProduct(foundProduct);
+            setIsFetching(false);
+            return;
+          }
+        }
+
+        // Otherwise fetch from API
+        const response = await axios.get(`http://localhost:3001/products/${productId}`);
+        setProduct(response.data.product);
+      } catch (err) {
+        setError(err.message || "Failed to fetch product");
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
+    fetchProduct();
+  }, [productId, products]);
 
   if (error) {
     return <NotFound />;

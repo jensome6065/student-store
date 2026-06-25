@@ -1,18 +1,6 @@
 .CheckoutSuccess {
   width: 100%;
-  padding: 1rem;
-  animation: slideIn 0.3s ease-out;
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  padding: 0;
 }
 
 .CheckoutSuccess > h3 {
@@ -20,22 +8,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #2e7d32 0%, #43a047 100%);
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: var(--bright-green);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-md);
+  font-size: 24px;
+  font-weight: 700;
+  gap: 12px;
 }
 
 .CheckoutSuccess > h3 > span {
   margin-left: 10px;
-  animation: bounceIn 0.6s ease-out;
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
 }
 .CheckoutSuccess p {
   color: white;
@@ -44,78 +28,123 @@
   color: white;
   display: flex;
   flex-direction: column;
+  gap: 24px;
 }
-.CheckoutSuccess .card .card-title {
+
+.CheckoutSuccess .card-title {
   color: white;
-  font-weight: 600;
-  font-size: 1.2rem;
-  margin-bottom: 5px;
-}
-
-.CheckoutSuccess .card-body {
-  padding: 1rem 0;
-}
-
-.CheckoutSuccess .order-summary {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  font-weight: 700;
+  font-size: 1.75rem;
+  margin: 0;
+  text-align: center;
 }
 
 .CheckoutSuccess .confirmation-message {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+.CheckoutSuccess .order-quick-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 8px 0;
+}
+
+.CheckoutSuccess .info-item {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.CheckoutSuccess .info-label {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.CheckoutSuccess .info-value {
   color: white;
-  font-size: 1rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: "Space Grotesk", sans-serif;
 }
 
-.CheckoutSuccess .order-details {
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 1rem;
-  border-radius: 8px;
-}
-
-.CheckoutSuccess .order-details p {
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-}
-
-.CheckoutSuccess .order-details strong {
-  color: rgba(255, 255, 255, 0.8);
+.CheckoutSuccess .status-badge {
+  font-size: 0.875rem;
+  background: rgba(112, 41, 99, 0.4);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid var(--bright-green);
+  color: #00ff9d;
+  text-transform: capitalize;
+  font-weight: 700;
 }
 
 .CheckoutSuccess .delivery-info {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
-  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
 }
 
 .CheckoutSuccess .card-foot {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
+  padding-top: 8px;
 }
+
+.CheckoutSuccess .card-foot a {
+  flex: 1;
+}
+
 .CheckoutSuccess button {
-  margin: 10px 0;
-  padding: 14px 28px;
+  width: 100%;
+  padding: 16px 24px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.95);
-  border: none;
-  color: var(--dark-blue);
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
   border-radius: 12px;
   transition: all var(--transition-base);
-  box-shadow: var(--shadow-md);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .CheckoutSuccess button:hover {
-  background: var(--pure-white);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-1px);
 }
 
 .CheckoutSuccess button:active {
   transform: translateY(0);
+}
+
+.CheckoutSuccess button.is-success {
+  background: var(--bright-green);
+  border-color: var(--bright-green);
+}
+
+.CheckoutSuccess button.is-success:hover {
+  background: var(--bright-green-hover);
+  border-color: var(--bright-green-hover);
 }
